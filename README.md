@@ -5,6 +5,7 @@ A interface gráfica é apenas para realizar os testes do core do sistema.
 
 Próximas tasks:
 - Poder selecionar mais de uma opção de evento.
+- Poder inserir a quantidade de ingressos
 - Adicionar valor total da compra de ingressos.
 - Adicionar ingressos com valores diferentes para diferentes eventos.
 - Poder remover ingresso adicionado ao carrinho
