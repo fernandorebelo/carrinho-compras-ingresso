@@ -4,7 +4,6 @@ public class Pista extends Ingresso{
 	
 	public Pista() {
 		super.setValor(20.0);
-		
 	}
 
 	@Override

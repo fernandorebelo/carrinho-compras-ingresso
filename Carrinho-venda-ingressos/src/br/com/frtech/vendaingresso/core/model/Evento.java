@@ -35,11 +35,11 @@ public class Evento {
 			
 			switch (opcao) {
 			case 1:
-				int opcaoPista = JOptionPane.showConfirmDialog(null, "Ingresso PISTA selecionado.\nVocê quer confirmar sua compra?");
+				int opcaoPista = JOptionPane.showConfirmDialog(null, "Ingresso PISTA selecionado.\nVocê quer continuar sua compra?");
 				if(opcaoPista == 0) {
 					opcao = 1;
 					ingressos.add(pista);
-					this.contadorIngressos++;
+					this.contadorIngressos ++;
 					JOptionPane.showMessageDialog(null, "Ingresso PISTA comprado!");
 				}else if(opcaoPista == 1) {
 					opcao = 1;
@@ -48,11 +48,11 @@ public class Evento {
 				break;
 				
 			case 2:
-				int opcaoVip = JOptionPane.showConfirmDialog(null, "Ingresso VIP selecionado.\nVocê quer confirmar sua compra?");
+				int opcaoVip = JOptionPane.showConfirmDialog(null, "Ingresso VIP selecionado.\nVocê quer continuar sua compra?");
 				if(opcaoVip == 0) {
 					opcao = 1;
 					ingressos.add(vip);
-					this.contadorIngressos++;
+					this.contadorIngressos ++;
 					JOptionPane.showMessageDialog(null, "Ingresso VIP comprado!");
 				}else if(opcaoVip == 1) {
 					opcao = 1;
@@ -91,21 +91,32 @@ public class Evento {
 	}
 	
 	public String listaIngressosVendidos() {
+		Pista pista = new Pista();
+		Vip vip = new Vip();
+		Camarote camarote = new Camarote();
+		
 		String lista = "---LISTA DE INGRESSOS NO MEU CARRINHO--\n";
 		int totalPista=0, totalVip=0, totalCamarote=0;
+		double valorTotalPista=0, valorTotalVip=0, valorTotalCamarote=0;
 		for (Ingresso ingresso : ingressos) {
 			if(ingresso instanceof Pista) {
-				totalPista++;
+				totalPista ++;
+				valorTotalPista += pista.getValor();
 			}else if(ingresso instanceof Vip) {
-				totalVip++;
+				totalVip ++;
+				valorTotalVip += vip.getValor();
 			}else if(ingresso instanceof Camarote) {
 				totalCamarote++;
+				valorTotalCamarote += camarote.getValor();
 			}
 		}
+		double valorTotalIngressos = pista.getValor()*totalPista + vip.getValor()*totalVip + camarote.getValor()*totalCamarote;
+
 		lista += "Total de ingressos comprados: " + getContadorIngressos() + "\n";
-		lista += "Total Pista: " + totalPista + "\n";
-		lista += "Total VIP: " + totalVip + "\n";
-		lista += "Total Camarote: " + totalCamarote + "\n";
+		lista += "Total Pista: " + totalPista + " | Valor total: R$" + valorTotalPista + "\n";
+		lista += "Total VIP: " + totalVip + " | Valor total: R$" + valorTotalVip + "\n";
+		lista += "Total Camarote: " + totalCamarote + " | Valor total: R$" + valorTotalCamarote + "\n";
+		lista += "VALOR TOTAL DOS INGRESSOS SELECIONADOS: R$" + valorTotalIngressos + "\n";
 		return lista;
 	}
 
